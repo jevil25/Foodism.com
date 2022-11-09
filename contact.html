@@ -16,6 +16,7 @@
     />
     <!-- main css -->
     <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/contact.css" />
   </head>
   <body>
    <nav class="navbar">
@@ -39,8 +40,58 @@
         </div>
       </div> 
     </nav>
-   <h1>Contact Page</h1>
-    <main class="page"></main>
+    <main class="page">
+      <section class="contact-container">
+        <article class="contact-info">
+          <h3>Want to get in touch?</h3>
+          <p>Want a add your recipes request for new recipes do drop a message</p>
+          <p>Do feel free to fill the following contact form. adious!!!!!</p>
+          <p>We are group of 3rd year engineering students. made this web page for our web project.</p>
+        </article>
+        <article>
+          <form action="" class="form contact-form">
+            <div class="form-row">
+              <label for="name" class="form-label">Your Name</label>
+              <input type="text" name="name" id="name" class="form-input">
+            </div>
+            <div class="form-row">
+              <label for="email" class="form-label">Your Email</label>
+              <input type="email" name="email" id="email" class="form-input">
+            </div>
+            <div class="form-row">
+              <label for="message" class="message">Message</label>
+              <textarea name="message" id="message" class="from-textarea"></textarea>
+            </div>
+            <button type="submit" class="btn btn-block">submit</button>
+          </form>
+        </article>
+      </section>
+      <section class="featured-recipes">
+        <h5 class="featured-title">Look At This Awesomesouce!</h5>
+        <div class="recipes-list">
+          <a href="single-recipe.html" class="recipe">
+            <img src="./assets/recipes/recipe-1.jpeg" alt="food" class="img recipe-img">
+            <h5>carne asada</h5>
+            <p>Prep : 15min | Cook : 5min</p>
+          </a>
+          <a href="single-recipe.html" class="recipe">
+            <img src="./assets/recipes/recipe-2.jpeg" alt="food" class="img recipe-img">
+            <h5>Greek Ribs</h5>
+            <p>Prep : 15min | Cook : 5min</p>
+          </a>
+          <a href="single-recipe.html" class="recipe">
+            <img src="./assets/recipes/recipe-3.jpeg" alt="food" class="img recipe-img">
+            <h5>Vegetable Soup</h5>
+            <p>Prep : 15min | Cook : 5min</p>
+          </a>
+          <a href="single-recipe.html" class="recipe">
+            <img src="./assets/recipes/recipe-4.jpeg" alt="food" class="img recipe-img">
+            <h5>Banana pancakes</h5>
+            <p>Prep : 15min | Cook : 5min</p>
+          </a>
+        </div>
+      </section>
+    </main>
       <footer class="page-footer">
         <p>&copy; <span id="date">2022</span>
         <span class="footer-logo">
@@ -49,4 +100,5 @@
       Built by Aaron Nazareth and Aaron Dsouza</p>
       </footer>
   </body>
+  <script src="./js/app.js"></script>
 </html>

@@ -16,6 +16,7 @@
     />
     <!-- main css -->
     <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/about.css" />
   </head>
   <body>
    <nav class="navbar">
@@ -39,8 +40,40 @@
         </div>
       </div> 
     </nav>
-    <h1>About Page</h1>
     <main class="page">
+      <section class="about-page">
+        <article>
+          <h2>Who We Are</h2>
+          <p>Simply Recipes is here to help you cook delicious meals with less stress and more joy. We offer recipes and cooking advice for home cooks, by home cooks. Helping create “kitchen wins” is what we’re all about.</p>
+          <a href="contact.html" class="btn">contact</a>
+        </article>
+        <img src="./assets/about.jpeg" alt="pouring-salt" class="img about-img">
+        </section>
+        <section class="featured-recipes">
+          <h5 class="featured-title">Look At This Awesomesouce!</h5>
+          <div class="recipes-list">
+            <a href="single-recipe.html" class="recipe">
+              <img src="./assets/recipes/recipe-1.jpeg" alt="food" class="img recipe-img">
+              <h5>carne asada</h5>
+              <p>Prep : 15min | Cook : 5min</p>
+            </a>
+            <a href="single-recipe.html" class="recipe">
+              <img src="./assets/recipes/recipe-2.jpeg" alt="food" class="img recipe-img">
+              <h5>Greek Ribs</h5>
+              <p>Prep : 15min | Cook : 5min</p>
+            </a>
+            <a href="single-recipe.html" class="recipe">
+              <img src="./assets/recipes/recipe-3.jpeg" alt="food" class="img recipe-img">
+              <h5>Vegetable Soup</h5>
+              <p>Prep : 15min | Cook : 5min</p>
+            </a>
+            <a href="single-recipe.html" class="recipe">
+              <img src="./assets/recipes/recipe-4.jpeg" alt="food" class="img recipe-img">
+              <h5>Banana pancakes</h5>
+              <p>Prep : 15min | Cook : 5min</p>
+            </a>
+          </div>
+        </section>
       </main>
       <footer class="page-footer">
         <p>&copy; <span id="date">2022</span>
@@ -50,4 +83,5 @@
       Built by Aaron Nazareth and Aaron Dsouza</p>
       </footer>
   </body>
+  <script src="./js/app.js"></script>
 </html>
