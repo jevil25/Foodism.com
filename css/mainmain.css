@@ -444,6 +444,8 @@ Navbar
   display: grid;
   grid:2rem 1rem;
   padding-bottom: 3rem;
+  grid-template-columns: auto;
+  width: max-content;
 }
 
 .tags-container h4{
@@ -523,7 +525,7 @@ Navbar
 
 @media screen and (min-width:1200px) {
   .recipes-list{
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: min-content;
   }
 
   .recipe h5{

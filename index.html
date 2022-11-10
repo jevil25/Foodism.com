@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simply Recipes</title>
+    <script src="./js/mapdata.js"></script>
+		<script src="./js/continentmap.js"></script>
     <!-- favicon -->
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
     <!-- normalize -->
@@ -15,14 +17,14 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <!-- main css -->
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/mainmain.css" />
   </head>
   <body>
     <nav class="navbar">
         <div class="nav-center">
             <div class="nav-header">
               <a href="index.html" class="nav-logo">
-                <img src="./assets/logo.svg" alt="simply recipes">
+                <img src="./assets/recipes/Foodism.com.png" alt="Foodism.com">
               </a>
               <button type="button" class="btn nav-btn">
                   <i class="fas fa-align-justify"></i>
@@ -59,26 +61,8 @@
               </div>
             </div>
             <div class="recipes-list">
-              <a href="single-recipe.html" class="recipe">
-                <img src="./assets/recipes/recipe-1.jpeg" alt="food" class="img recipe-img">
-                <h5>carne asada</h5>
-                <p>Prep : 15min | Cook : 5min</p>
-              </a>
-              <a href="single-recipe.html" class="recipe">
-                <img src="./assets/recipes/recipe-2.jpeg" alt="food" class="img recipe-img">
-                <h5>Greek Ribs</h5>
-                <p>Prep : 15min | Cook : 5min</p>
-              </a>
-              <a href="single-recipe.html" class="recipe">
-                <img src="./assets/recipes/recipe-3.jpeg" alt="food" class="img recipe-img">
-                <h5>Vegetable Soup</h5>
-                <p>Prep : 15min | Cook : 5min</p>
-              </a>
-              <a href="single-recipe.html" class="recipe">
-                <img src="./assets/recipes/recipe-4.jpeg" alt="food" class="img recipe-img">
-                <h5>Banana pancakes</h5>
-                <p>Prep : 15min | Cook : 5min</p>
-              </a>
+              <div><h4>Now get your favorite recipes based on the regions you live!!!!</h4></div>
+              <div id="map"></div>
             </div>
           </section>
         </main>
