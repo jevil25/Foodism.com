@@ -144,7 +144,7 @@ ul {
 .btn {
   cursor: pointer;
   color: var(--white);
-  background: var(--primary-500);
+  background: #ED1C24;
   border: transparent;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
@@ -155,7 +155,7 @@ ul {
   display: inline-block;
 }
 .btn:hover {
-  background: var(--primary-700);
+  background: #9a3539;
   box-shadow: var(--shadow-3);
 }
 .btn-hipster {
@@ -272,6 +272,12 @@ Navbar
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 20px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  background-color: #F8FAFC;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
 .nav-center{
@@ -287,10 +293,10 @@ Navbar
 }
 
 .nav-header img{
-  width: 200px;
+  width: 175px;
   position: relative;
-  top: 10px;
   right: 20px;
+  top:9px;
 }
 
 .nav-btn{
@@ -326,6 +332,7 @@ Navbar
 .nav-logo{
   display: flex;
   align-items: center;
+  height: 5px;
 }
 
 
@@ -343,7 +350,7 @@ Navbar
   }  
 
   .navbar{
-    height: 6rem;
+    height: 4.2rem;
   }
 
   .nav-center{
@@ -400,7 +407,7 @@ Navbar
 }
 
 .footer-logo{
-  color: var(--primary-500);
+  color: #ED1C24;
 }
 
 .hero{
@@ -408,6 +415,7 @@ Navbar
   background: url('../assets/main.jpeg') center/cover no-repeat;
   margin-bottom: 2rem;
   border-radius: --var(--borderRadius);
+  margin-top: 75px;
   position: relative;
 }
 

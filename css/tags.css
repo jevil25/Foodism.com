@@ -2,6 +2,7 @@
     display: grid;
     gap:2rem;
     padding-bottom: 3rem;
+    margin-top: 75px;
 }
 
 .tag{
@@ -22,6 +23,12 @@
 
 .tag h5{
     font-weight: 600;
+}
+
+.page-footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
 
 @media screen and (min-width: 576px) {

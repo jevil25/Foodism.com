@@ -1,6 +1,7 @@
 .recipe-hero{
     display: grid;
     gap: 3rem;
+    margin-top: 75px;
 }
 
 .recipe-hero-img{
