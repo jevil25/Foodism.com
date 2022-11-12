@@ -23,7 +23,7 @@
 
 .recipe-icons i{
     font-size: 1.5rem;
-    color: var(--primary-500);
+    color: #ED1C24;
 }
 
 .recipe-icons h5, .recipe-icons p{
@@ -44,7 +44,7 @@
 }
 
 .recipes-tags a{
-    background-color: var(--primary-500);
+    background-color: rgb(114, 106, 106);
     border-radius: var(--borderRadius);
     color:var(--white);
     padding: 0.1rem 0.3rem;
@@ -82,7 +82,7 @@
     text-transform: uppercase;
     font-weight: 600;
     margin-bottom: 0;
-    color: var(--primary-500);
+    color: black;
 }
 
 .single-instructions >p{
@@ -108,9 +108,11 @@
 .single-tool{
     border-bottom: 2px solid var(--grey-300);
     padding-bottom: 0.75rem;
-    color: var(--primary-500);
+    color: #ED1C24;
     text-transform: capitalize;
 }
 
-
+.nav-link{
+    color: white;
+}
 

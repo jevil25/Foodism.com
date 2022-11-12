@@ -274,7 +274,7 @@ Navbar
   align-items: center;
   height: 20px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-  background-color: #F8FAFC;
+  background-color: black;
   position: fixed;
   z-index: 1;
   width: 100%;
@@ -293,7 +293,15 @@ Navbar
 }
 
 .nav-header img{
-  width: 175px;
+  width: 75px;
+  position: relative;
+  right: 20px;
+}
+
+.heading{
+  font-weight:500;
+  color: white;
+  font-size:xx-large;
   position: relative;
   right: 20px;
 }
@@ -321,7 +329,7 @@ Navbar
   display: block;
   text-align: center;
   text-transform: capitalize;
-  color: var(--grey-900);
+  color: white;
   letter-spacing: var(--letterSpacing);
   padding: 1rem 0;
   border-top: 1px solid var(--grey-500);
@@ -336,7 +344,7 @@ Navbar
 
 
 .nav-link:hover{
-  color: var(--primary-500);
+  color: #ED1C24;
 }
 
 .contact-link a{
@@ -481,7 +489,7 @@ Navbar
 }
 
 .tags-list a:hover{
-  color: var(--primary-500);
+  color: #ED1C24;
 }
 
 .recipe{
