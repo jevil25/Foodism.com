@@ -560,3 +560,8 @@ Navbar
     margin-bottom: 15px;
   }
 }
+
+.nav-button{
+  background-color: transparent;
+  border: transparent;
+}
