@@ -1,5 +1,5 @@
 //packages
-const express = require("express"); //interact with html file
+const express = require("express"); //Stringeract with html file
 const bodyParser=require("body-parser"); //to get data from user
 const mongoose=require("mongoose"); //package to connect to db
 const multer = require('multer');//package to upload and fetch images
@@ -20,7 +20,7 @@ mongoose.connect("mongodb+srv://jevil2002:aaron2002@jevil257.lipykl5.mongodb.net
 // db declaration
 const foodcountrySchema=new mongoose.Schema({
     continent_id:{
-        type:int,
+        type:String,
         required:true,
         unique:true
     },
@@ -39,7 +39,7 @@ const recipesSchema=new mongoose.Schema({
         type:String
     },
     recipe_id:{
-        type:int,
+        type:String,
         unique:true,
         required:true
     },
@@ -47,16 +47,16 @@ const recipesSchema=new mongoose.Schema({
         type:Array
     },
     continent_id:{
-        type:int,
+        type:String,
         required:true,
         unique:true
     },
     preptime:{
-        type:int,
+        type:String,
         required:true
     },
     cooktime:{
-        type:int,
+        type:String,
         required:true
     },
     recipe_ingredients:{
@@ -71,7 +71,7 @@ const recipesSchema=new mongoose.Schema({
 
 const foodtagSchema=new mongoose.Schema({
     tag_id:{
-        type:int,
+        type:String,
         required:true,
         unique:true
     },
@@ -108,4 +108,9 @@ app.post("/index",function(req,res){
     res.sendFile(path+"/index.html");
     // global_id=null;
 });
+
+app.post("/recipes",function(req,res){
+    console.log(req.body.continent)
+    res.sendFile(path+"/recipes.html")
+})
 
