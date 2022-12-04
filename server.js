@@ -20,7 +20,7 @@ mongoose.connect("mongodb+srv://jevil2002:aaron2002@jevil257.lipykl5.mongodb.net
 // db declaration
 const foodcountrySchema=new mongoose.Schema({
     continent_id:{
-        type:String,
+        type:Number,
         required:true,
         unique:true
     },
@@ -38,8 +38,11 @@ const recipesSchema=new mongoose.Schema({
     recipe_pic:{
         type:String
     },
+    recipe_description:{
+        type:String
+    },
     recipe_id:{
-        type:String,
+        type:Number,
         unique:true,
         required:true
     },
@@ -47,17 +50,20 @@ const recipesSchema=new mongoose.Schema({
         type:Array
     },
     continent_id:{
-        type:String,
+        type:Number,
         required:true,
         unique:true
     },
     preptime:{
-        type:String,
+        type:Number,
         required:true
     },
     cooktime:{
-        type:String,
+        type:Number,
         required:true
+    },
+    servings:{
+        type:Number
     },
     recipe_ingredients:{
         type:Array,
@@ -66,12 +72,15 @@ const recipesSchema=new mongoose.Schema({
     recipe_steps:{
         type:Array,
         required:true
+    },
+    nutrition_id:{
+        type:Number
     }
 })
 
 const foodtagSchema=new mongoose.Schema({
     tag_id:{
-        type:String,
+        type:Number,
         required:true,
         unique:true
     },
@@ -82,11 +91,32 @@ const foodtagSchema=new mongoose.Schema({
     }
 });
 
+const nutritionSchema=new mongoose.Schema({
+    nutrition_id:{
+        type:Number,
+        required:true,
+        unique:true
+    },
+    calories:{
+        type:Number
+    },
+    fat:{
+        type:Number
+    },
+    Carbs:{
+        type:Number
+    },
+    protein:{
+        type:Number
+    }
+});
+
 const Continents = new mongoose.model("Continents", foodcountrySchema);
 const Recipe=new mongoose.model("Recipes",recipesSchema);
 const Tags=new mongoose.model("Tags",foodtagSchema);
+const nutrition=new mongoose.model("Nutrition",nutritionSchema);
 
-module.exports={Continents,Recipe,Tags}; //sends data to database
+module.exports={Continents,Recipe,Tags,nutrition}; //sends data to database
 
 const app=express();
 app.use(express.static(__dirname));
