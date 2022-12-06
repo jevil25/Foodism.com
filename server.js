@@ -142,9 +142,29 @@ app.post("/index",function(req,res){
     // global_id=null;
 });
 
+
 app.post("/recipes",async function(req,res){
-    console.log(req.body.continent)
-    let recipe=await Recipe.findOne({recipe_id:1});
-    console.log(recipe)
-    // res.sendFile(path+"/recipes.html")
+    app.set('view engine', 'hbs') //view engine for handlebars page
+    let recipes=await Recipe.aggregate( [
+        {
+          $lookup:
+          {
+            from: 'Nutrition',
+            localField: 'nutrition_id',
+            foreignField: 'nutrition_id',
+            as: 'nutriton_details'
+          }
+       },
+       {
+         $addFields: {
+        calories : { $arrayElemAt: ['$nutriton_details.calories',0] },
+        fat: { $arrayElemAt: ['$nutriton_details.fat',0] },
+        carbs: { $arrayElemAt: ['$nutriton_details.carbs',0] },
+        protein:{ $arrayElemAt: ['$nutriton_details.protein',0] }
+      } },
+      {
+        $unset:['nutrition_id','_id','recipe_id','nutriton_details','__v']
+      }
+     ] )
+    res.render(path+"/single-recipe.hbs",{recipe:recipes},);
 })
