@@ -116,11 +116,14 @@ const Recipe=new mongoose.model("Recipes",recipesSchema);
 const Tags=new mongoose.model("Tags",foodtagSchema);
 const nutrition=new mongoose.model("Nutrition",nutritionSchema);
 
+
+
 module.exports={Continents,Recipe,Tags,nutrition}; //sends data to database
+
 
 const app=express();
 app.use(express.static(__dirname));
-const path=__dirname;
+const path=__dirname+"/views";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -139,8 +142,9 @@ app.post("/index",function(req,res){
     // global_id=null;
 });
 
-app.post("/recipes",function(req,res){
+app.post("/recipes",async function(req,res){
     console.log(req.body.continent)
-    res.sendFile(path+"/recipes.html")
+    let recipe=await Recipe.findOne({recipe_id:1});
+    console.log(recipe)
+    // res.sendFile(path+"/recipes.html")
 })
-

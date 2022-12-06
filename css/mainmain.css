@@ -565,3 +565,8 @@ Navbar
   background-color: transparent;
   border: transparent;
 }
+
+.adjust{
+  position: relative;
+  bottom:1px;
+}
