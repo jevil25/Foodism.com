@@ -142,29 +142,94 @@ app.post("/index",function(req,res){
     // global_id=null;
 });
 
-
 app.post("/recipes",async function(req,res){
+    app.set('view engine','hbs');
+    console.log(req.body.continent);
+    let recipes= await Recipe.aggregate([
+        {
+            '$lookup': {
+                'form': 'continents',
+                'localField':'continent_id',
+                'foreignField': 'continent_id',
+                'as': 'continentDetails'
+            }
+        }
+    ])
+})
+
+
+app.post("/singlerecipe",async function(req,res){
     app.set('view engine', 'hbs') //view engine for handlebars page
     let recipes=await Recipe.aggregate( [
         {
-          $lookup:
-          {
-            from: 'Nutrition',
-            localField: 'nutrition_id',
-            foreignField: 'nutrition_id',
-            as: 'nutriton_details'
+          '$lookup': {
+            'from': 'Nutrition', 
+            'localField': 'nutrition_id', 
+            'foreignField': 'nutrition_id', 
+            'as': 'nutriton_details'
           }
-       },
-       {
-         $addFields: {
-        calories : { $arrayElemAt: ['$nutriton_details.calories',0] },
-        fat: { $arrayElemAt: ['$nutriton_details.fat',0] },
-        carbs: { $arrayElemAt: ['$nutriton_details.carbs',0] },
-        protein:{ $arrayElemAt: ['$nutriton_details.protein',0] }
-      } },
-      {
-        $unset:['nutrition_id','_id','recipe_id','nutriton_details','__v']
-      }
-     ] )
+        }, {
+          '$addFields': {
+            'calories': {
+              '$arrayElemAt': [
+                '$nutriton_details.calories', 0
+              ]
+            }, 
+            'fat': {
+              '$arrayElemAt': [
+                '$nutriton_details.fat', 0
+              ]
+            }, 
+            'carbs': {
+              '$arrayElemAt': [
+                '$nutriton_details.carbs', 0
+              ]
+            }, 
+            'protein': {
+              '$arrayElemAt': [
+                '$nutriton_details.protein', 0
+              ]
+            }
+          }
+        }, {
+          '$unset': [
+            'nutrition_id', '_id', 'recipe_id', 'nutriton_details', '__v'
+          ]
+        }, {
+          '$lookup': {
+            'from': 'tags', 
+            'localField': 'tag_id', 
+            'foreignField': 'tag_id', 
+            'as': 'tagResult'
+          }
+        }, {
+          '$addFields': {
+            'tags': [
+              {
+                '$arrayElemAt': [
+                  '$tagResult.tag_name', 0
+                ]
+              }, {
+                '$arrayElemAt': [
+                  '$tagResult.tag_name', 1
+                ]
+              }, {
+                '$arrayElemAt': [
+                  '$tagResult.tag_name', 2
+                ]
+              }, {
+                '$arrayElemAt': [
+                  '$tagResult.tag_name', 3
+                ]
+              }
+            ]
+          }
+        }, {
+          '$unset': [
+            'tag_id', 'tagResult','continent_id'
+          ]
+        }
+      ] )
+      console.log(recipes)
     res.render(path+"/single-recipe.hbs",{recipe:recipes},);
 })

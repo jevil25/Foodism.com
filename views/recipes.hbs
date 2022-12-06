@@ -42,41 +42,27 @@
           </div>
         </div> 
       </nav>
-    <main class="page">
-      <section class="recipes-container">
-        <div class="tags-container">
-          <h4>Recipes</h4>
-          <div class="tags-list">
-            <a href="tag-template.html">Chicken (1)</a>
-            <a href="tag-template.html">Breakfast (2)</a>
-            <a href="tag-template.html">Carrots (3)</a>
-            <a href="tag-template.html">Food (4)</a>
-          </div>
-        </div>
-        <div class="recipes-list">
-          <a href="single-recipe.html" class="recipe">
-            <img src="../assets/recipes/recipe-1.jpeg" alt="food" class="img recipe-img">
-            <h5>carne asada</h5>
-            <p>Prep : 15min | Cook : 5min</p>
-          </a>
-          <a href="single-recipe.html" class="recipe">
-            <img src="../assets/recipes/recipe-2.jpeg" alt="food" class="img recipe-img">
-            <h5>Greek Ribs</h5>
-            <p>Prep : 15min | Cook : 5min</p>
-          </a>
-          <a href="single-recipe.html" class="recipe">
-            <img src="../assets/recipes/recipe-3.jpeg" alt="food" class="img recipe-img">
-            <h5>Vegetable Soup</h5>
-            <p>Prep : 15min | Cook : 5min</p>
-          </a>
-          <a href="single-recipe.html" class="recipe">
-            <img src="../assets/recipes/recipe-4.jpeg" alt="food" class="img recipe-img">
-            <h5>Banana pancakes</h5>
-            <p>Prep : 15min | Cook : 5min</p>
-          </a>
-        </div>
-      </section>
-    </main>
+        <main class="page">
+          <section class="recipes-container">
+            <div class="tags-container">
+              <h4>Recipes</h4>
+              <div class="tags-list">
+                {{#each tags}}
+                  <a href="tag-template.html">{{this}}</a>
+                {{/each}}
+              </div>
+            </div>
+            <div class="recipes-list">
+              {{#each recipes}}
+                <a href="single-recipe.html" class="recipe">
+                  <img src="../assets/recipes/recipe-1.jpeg" alt="food" class="img recipe-img">
+                  <h5>{{recipe name}}</h5>
+                  <p>Prep : {{preptime}} | Cook : {{cooktime}}</p>
+                </a>
+              {{/each}}
+            </div>
+          </section>
+        </main>
       <footer class="page-footer">
         <p>&copy; <span id="date">2022</span>
         <span class="footer-logo">

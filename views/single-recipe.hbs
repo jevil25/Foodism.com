@@ -72,10 +72,10 @@
                     </article>
                   </div>
                   <div class="recipes-tags">
-                    Tags: <a href="tag-template.html">Chicken</a>
-                    <a href="tag-template.html">breakfast</a>
-                    <a href="tag-template.html">pancakes</a>
-                    <a href="tag-template.html">food</a>
+                    Tags:
+                    {{#each tags}} 
+                      <a href="tag-template.html">{{this}}</a>
+                    {{/each}}
                   </div>
                 </article>
               </section>
