@@ -8,4 +8,7 @@ git clone https://github.com/jevil25/Recipe-webpage.git
 or 
 download the zip file extract it 
 
-And run the index.html file.
+Download all the npm dependencies
+
+run it in the terminal using 
+# node server.js
