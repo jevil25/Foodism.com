@@ -59,6 +59,7 @@
                 {{#if recipe_name}}
                   <form action="/singlerecipe" method="post">
                     <button class="recipe">
+                      <input type="text" value="{{recipe_name}}" class="hid" name="r_name">
                       <img src="{{recipe_pic_link}}" alt="food" class="img recipe-img">
                       <h5>{{recipe_name}}</h5>
                       <p>Prep : {{preptime}}mins | Cook : {{cooktime}}mins</p>

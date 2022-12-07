@@ -1,4 +1,9 @@
 button{
     border: transparent;
-    background-color: transparent;
+    /* background-color: transparent; */
+}
+
+.hid{
+    display: none;
+    visibility: hidden;
 }

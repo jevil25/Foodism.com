@@ -129,27 +129,36 @@ const nut=new Nutrition({
 
 // nut.save();
 
-const load=new Recipe({
-recipe_name:'Seared Burgers With Easy-Melting Comté Cheese',
-recipe_pic:'../assets/recipes/steamed-cheese-burger.webp',
-recipe_description:"Some folks balk at the idea of putting American cheese anywhere near their burger. Cheese? You call that stuff cheese? More like orange chemical plasti-crap. No thanks! they say, as they peel off the orange slices and fling them against the wall all angry-like",
-recipe_id:3,
-tag_id:[],
-continent_id:2,
-preptime:15,
-cooktime:15,
-servings:2,
-recipe_ingredients:["2 ounces coarsely grated aged Comté cheese",
-"1 teaspoon instant flour (like Wondra)",
-"2 teaspoons heavy cream or milk",
-"1/4 teaspoon vegetable oil",
-"8 ounces of freshly ground beef, formed into two 4-ounce balls",
-"Kosher salt and freshly ground black pepper",
-"2 toasted hamburger buns",
-"Toppings and condiments as desired"],
-recipe_steps:["Combine cheese, flour, and milk in a small bowl and toss with a spoon to combine. Divide mixture evenly between two small ramekins and set aside. Set a steamer insert into a large saucepot with 1 inch of water. Bring water to a simmer over medium-high heat and cover pot.","Heat vegetable oil in a 10-inch cast iron or stainless steel skillet over high heat until smoking. Add beef balls to skillet and smash firmly with a stiff spatula into 4- to 4 1/2-inch patties. Season generously with salt and pepper.","While patties cook on first side, transfer cheese cups to steamer and close lid. After the first side is well browned (about 1 1/2 minutes), carefully scrape patties up from bottom us skillet using a stiff spatula and flip. Season top side with salt and pepper. Continue to cook until second side is browned, about 1 minute longer.","Transfer patties to toasted bun bottoms. Carefully pick up a ramekin full of cheese with a pot holder and stir with a spoon until homogenous and completely smooth. Scrape cheese out of ramekin over burger. Repeat with second burger. Serve immediately with condiments and toppings as desired."],
-nutrition_id:3
-})
+// const load=new Recipe({
+//     "continent_id": 3,
+//     "cooktime": 25,
+//     "nutrition_id": 7,
+//     "preptime": 25,
+//     "recipe_description": "These crispy and peppery fried plantain chips sport a spiced seasoning that will be familiar to anyone who knows the Pollo Campero restaurant chain, since it's modeled on their fried chicken seasoning. I'd already gone down the rabbit hole of making a copycat Pollo Campero fried chicken recipe, and I'd also recently published a recipe for basic fried plantain chips, so it seemed obvious to combine the two.",
+//     "recipe_id": 8,
+//     "recipe_ingredients": ["2 teaspoons seasoning salt, such as Lawry's",
+//                             "1 teaspoon freshly ground black pepper",
+//                             "1 teaspoon white pepper",
+//                           "1/2 teaspoon cumin",
+//                       "1/2 teaspoon curry powder",
+//                       "1/2 teaspoon paprika",
+//                   "1/2 teaspoon MSG (optional)",
+//                   "1/4 teaspoon cayenne",
+//               "2 green plantains",
+//             "Vegetable oil, for frying (about 2 cups; 475ml)",
+//             "Kosher salt"],
+//     "recipe_name": "Pollo Campero–Seasoned Fried Plantain Chips",
+//     "recipe_pic": "../assets/recipes/Pollo-Campero.webp",
+//     "recipe_steps": [
+//       "In a small bowl, stir together seasoning salt, black pepper, white pepper, cumin, curry powder, paprika, MSG (if using), and cayenne.",
+//       "Cut off the ends of each plantain.",
+//       "Peel plantains and Cut plantains in half crosswise.",
+//       "Using a mandoline slicer, slice plantains lengthwise into planks 1/8-inch thick.",
+//       "Line a rimmed baking sheet with a wire rack. Fill a large, deep cast iron or stainless steel skillet halfway with oil. Set over medium-high heat until the oil reaches 350°F (175°C). Working in batches and avoiding crowing the pan, add plantain slices and fry, turning occasionally, until golden brown all over, about 4 minutes total. Using a spider strainer or slotted spoon, transfer plantains to wire rack to drain. Immediately season all over with the spice mixture followed by a sprinkling of salt. Repeat with remaining plantain slices."      
+//     ],
+//     "servings": 8,
+//     "tag_id": []
+// })
 
 // const tag=new Tags({
 // tag_id:5,
@@ -198,10 +207,6 @@ app.post("/recipes",async function(req,res){
     console.log(req.body.continent);
     let recipes= await Continents.aggregate([
       {
-        '$match': {
-          'continent_name': req.body.continent
-        }
-      }, {
         '$lookup': {
           'from': 'recipes', 
           'localField': 'continent_id', 
@@ -236,10 +241,16 @@ app.post("/recipes",async function(req,res){
 
 app.post("/singlerecipe",async function(req,res){
     app.set('view engine', 'hbs') //view engine for handlebars page
+    console.log(req.body.r_name)
     let recipes=await Recipe.aggregate( [
+      {
+        '$match': {
+          'recipe_name': req.body.r_name
+        }
+      },
         {
           '$lookup': {
-            'from': 'Nutrition', 
+            'from': 'nutritions', 
             'localField': 'nutrition_id', 
             'foreignField': 'nutrition_id', 
             'as': 'nutriton_details'

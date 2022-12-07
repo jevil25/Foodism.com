@@ -484,11 +484,13 @@ Navbar
 
 .recipe{
   display: block;
-  margin-right: 10px;
+  margin-right: 15px;
+  margin-bottom: 10px;
 }
 
 .recipe-img{
-  height: 15rem;
+  height: 14rem;
+  width: 16rem;
   border-radius: var(--borderRadius);
   margin-bottom: 1rem;
 }
