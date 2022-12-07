@@ -197,10 +197,21 @@ app.get('/',function(req,res){ //used to identify user sessions
     res.sendFile(path+"/index.html");
 });
 
-app.post("/index",function(req,res){
+app.post("/home",function(req,res){
     res.sendFile(path+"/index.html");
     // global_id=null;
 });
+
+app.post("/about",function(req,res){
+  res.sendFile(path+"/about.html");
+  // global_id=null;
+});
+
+app.post("/contact",function(req,res){
+  res.sendFile(path+"/contact.html");
+  // global_id=null;
+});
+
 
 app.post("/recipes",async function(req,res){
     app.set('view engine','hbs');
