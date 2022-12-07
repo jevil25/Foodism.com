@@ -16,6 +16,7 @@
     />
     <!-- main css -->
     <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/recipes.css">
   </head>
   <body>
     <nav class="navbar">
@@ -47,18 +48,23 @@
             <div class="tags-container">
               <h4>Recipes</h4>
               <div class="tags-list">
-                {{#each tags}}
-                  <a href="tag-template.html">{{this}}</a>
-                {{/each}}
+                  <a href="tag-template.html">Chickhen</a>
+                  <a href="tag-template.html">Food</a>
+                  <a href="tag-template.html">Cake</a>
+                  <a href="tag-template.html">Vegetable</a>
               </div>
             </div>
             <div class="recipes-list">
-              {{#each recipes}}
-                <a href="single-recipe.html" class="recipe">
-                  <img src="../assets/recipes/recipe-1.jpeg" alt="food" class="img recipe-img">
-                  <h5>{{recipe name}}</h5>
-                  <p>Prep : {{preptime}} | Cook : {{cooktime}}</p>
-                </a>
+              {{#each recipe}}
+                {{#if recipe_name}}
+                  <form action="/singlerecipe" method="post">
+                    <button class="recipe">
+                      <img src="{{recipe_pic_link}}" alt="food" class="img recipe-img">
+                      <h5>{{recipe_name}}</h5>
+                      <p>Prep : {{preptime}}mins | Cook : {{cooktime}}mins</p>
+                    </button>
+                  </form>
+                {{/if}}
               {{/each}}
             </div>
           </section>

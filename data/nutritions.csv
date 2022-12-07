@@ -1,2 +1,5 @@
-nutrition_id,calories,fat,carbs,protein
-1,193,7,29,5
+calories,carbs,fat,nutrition_id,protein
+636,39,32,5,41
+549,10,41,4,37
+16,3,0,6,1
+13,4,0,7,5
