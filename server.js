@@ -103,7 +103,7 @@ const nutritionSchema=new mongoose.Schema({
     fat:{
         type:Number
     },
-    Carbs:{
+    carbs:{
         type:Number
     },
     protein:{
@@ -214,7 +214,7 @@ app.post("/contact",function(req,res){
 });
 
 app.post("/add",function (req,res){
-  res.sendFile(path+"/tags.html")
+  res.sendFile(path+"/addYourRecipe.html")
 })
 
 var storage = multer.diskStorage({
@@ -231,21 +231,23 @@ app.use('/uploads',express.static('./assets/recipes'));
 
 app.post("/uploaddata",upload.single("image"), async function(req,res){
   let files= req.file
-  console.log(files)
-  console.log(req.body.recipename)
-  console.log(req.body.recipe_desc)
-  console.log(req.body.continent)
-  console.log(req.body.cooktime)
-  console.log(req.body.preptime)
-  console.log(req.body.servings)
-  console.log(req.body.recipe_in)
-  console.log(req.body.recipe_steps)
-  console.log(req.body.calories)
-  console.log(req.body.protein)
-  console.log(req.body.carbs)
-  console.log(req.body.fat)
-  const ingredientsArr=req.body.recipe_in.split(',');
-  const stepsArray=req.body.recipe_steps.split(',');
+  // console.log(files)
+  // console.log(req.body.recipename)
+  // console.log(req.body.recipe_desc)
+  // console.log(req.body.continent)
+  // console.log(req.body.cooktime)
+  // console.log(req.body.preptime)
+  // console.log(req.body.servings)
+  // console.log(req.body.recipe_in)
+  // console.log(req.body.recipe_steps)
+  // console.log(req.body.calories)
+  // console.log(req.body.protein)
+  // console.log(req.body.carbs)
+  // console.log(req.body.fat)
+  // console.log('.'+files.destination+'/'+files.filename)
+  const ingredientsArr=req.body.recipe_in.split(',,');
+  const stepsArray=req.body.recipe_steps.split(',,');
+  const filename='.'+files.destination+'/'+files.filename;
   const nutriton= await Nutrition.aggregate([
     {
       '$group': {
@@ -256,45 +258,85 @@ app.post("/uploaddata",upload.single("image"), async function(req,res){
       }
     }
   ]);
-  console.log(nutriton[0].nutrition_id);
+
+  const Continent=await Continents.aggregate([
+      {
+          '$match': {
+              'continent_name': req.body.continent
+          }
+      }
+  ])
+
+  const recipeid=await Recipe.aggregate([
+    {
+        '$group': {
+            '_id': 'recipe_id', 
+            'recipe_id': {
+                '$max': '$recipe_id'
+            }
+        }
+    }
+])
+  console.log(Continent[0].continent_id+1)
+  console.log(nutriton[0].nutrition_id+1);
+  console.log(recipeid[0].recipe_id+1)
+  const load=new Recipe({
+    "continent_id": Continent[0].continent_id,
+    "cooktime": req.body.cooktime,
+    "nutrition_id": nutriton[0].nutrition_id+1,
+    "preptime": req.body.preptime,
+    "recipe_description": req.body.recipe_desc,
+    "recipe_id": recipeid[0].recipe_id+1,
+    "recipe_ingredients": ingredientsArr,
+    "recipe_name": req.body.recipename,
+    "recipe_pic": filename,
+    "recipe_steps": stepsArray,
+    "servings": req.body.servings,
+    "tag_id": [1,2,3,4]
+})
+console.log(load)
+load.save();
+
+const nutrition=await Nutrition({
+  nutrition_id:nutriton[0].nutrition_id+1,
+  calories:req.body.calories,
+  fat:req.body.fat,
+  protein:req.body.protein,
+  carbs:req.body.carbs,
+})
+console.log(nutrition)
+
+nutrition.save();
 })
 
 
 app.post("/recipes",async function(req,res){
     app.set('view engine','hbs');
     console.log(req.body.continent);
-    let recipes= await Continents.aggregate([
+    let recipes= await Recipe.aggregate([
       {
         '$lookup': {
-          'from': 'recipes', 
+          'from': 'continents', 
           'localField': 'continent_id', 
           'foreignField': 'continent_id', 
-          'as': 'Recipe'
-        }
-      },
-      {
-        '$match': {
-          'continent_name': req.body.continent
+          'as': 'continent'
         }
       }, {
         '$addFields': {
-          'recipes': {
+          'continent': {
             '$arrayElemAt': [
-              '$Recipe', 0
+              '$continent', 0
             ]
           }
         }
       }, {
         '$addFields': {
-          'recipe_name': '$recipes.recipe_name', 
-          'preptime': '$recipes.preptime', 
-          'cooktime': '$recipes.cooktime', 
-          'recipe_pic_link': '$recipes.recipe_pic'
+          'continent_name': '$continent.continent_name'
         }
       }, {
-        '$unset': [
-          'continent_id', 'continent_name', 'Recipe', 'recipes', '_id'
-        ]
+        '$match': {
+          'continent_name': req.body.continent
+        }
       }
     ]);
     console.log(recipes)
