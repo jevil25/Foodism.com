@@ -188,6 +188,7 @@ const path=__dirname+"/views";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.set('view engine','hbs');
 
 
 app.listen(3000,function(){
@@ -226,6 +227,7 @@ var storage = multer.diskStorage({
     cb(null, file.fieldname+'-'+Date.now()+ext);
   }
 })
+
 var upload = multer({ storage: storage })
 app.use('/uploads',express.static('./assets/recipes'));
 
@@ -343,6 +345,33 @@ app.post("/recipes",async function(req,res){
     res.render("recipes.hbs",{recipe:recipes})
 })
 
+app.post('/recipesall',async function (req,res){
+  app.set('view engine','hbs');
+  let recipesall= await Recipe.aggregate([
+    {
+      '$lookup': {
+        'from': 'continents', 
+        'localField': 'continent_id', 
+        'foreignField': 'continent_id', 
+        'as': 'continent'
+      }
+    }, {
+      '$addFields': {
+        'continent': {
+          '$arrayElemAt': [
+            '$continent', 0
+          ]
+        }
+      }
+    }, {
+      '$addFields': {
+        'continent_name': '$continent.continent_name'
+      }
+    }
+  ])
+  console.log(recipesall)
+  res.render(path+"/recipes.hbs",{recipe:recipesall})
+})
 
 app.post("/singlerecipe",async function(req,res){
     app.set('view engine', 'hbs') //view engine for handlebars page
