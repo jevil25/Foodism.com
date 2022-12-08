@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tags</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- favicon -->
     <link rel="shortcut icon" href="../assets/favicon.ico" type="image/x-icon" />
     <!-- normalize -->
@@ -35,7 +36,7 @@
           <div class="nav-links show-links">
             <form action="/home" method="post"><button class="nav-link" style="background: transparent;">HOME</button></form>
             <form action="/about" method="post"><button class="nav-link" style="background: transparent;">ABOUT</button></form>
-            <form action="/tags" method="post"><button class="nav-link nav-button adjust" style="background: transparent;">TAGS</button></form>
+            <form action="/add" method="post"><button class="nav-link nav-button adjust" style="background: transparent;">ADD YOUR RECIPE</button></form>
             <form action="/recipes" method="post"><button class="nav-link nav-button adjust" style="background: transparent;">RECIPES</button></form>
             <div class="nav-link contact-link">
               <form action="/contact" method="post"><button class="btn">contact</button></form>
@@ -45,26 +46,64 @@
       </nav>
         <main class="page">
           <section class="tags-wrapper">
-            <a href="tag-template.html" class="tag">
-              <h5>Chicken</h5>
-              <p>1 recipe</p>
-            </a>
-            <a href="tag-template.html" class="tag">
-              <h5>Breakfast</h5>
-              <p>2 recipe</p>
-            </a>
-            <a href="tag-template.html" class="tag">
-              <h5>carrots</h5>
-              <p>3 recipe</p>
-            </a>
-            <a href="tag-template.html" class="tag">
-              <h5>dinner</h5>
-              <p>4 recipe</p>
-            </a>
-            <a href="tag-template.html" class="tag">
-              <h5>food</h5>
-              <p>1 recipe</p>
-            </a>
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Recipe Name</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Recipe Description</label>
+                <textarea value=" " type="text" class="form-control" id="exampleInputPassword1"></textarea>
+              </div>
+              <div class="mb-3 ">
+                <label for="exampleInputEmail1" class="form-label">Recipe Continent</label>
+                <select name="" id="">
+                  <option>Africa</option>
+                  <option>South America</option>
+                  <option>North America</option>
+                  <option>South Asia</option>
+                  <option>North Asia</option>
+                  <option>Middle East</option>
+                  <option>Europe</option>
+                  <option>Oceania</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Cook Time</label>
+                <input type="text" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Prep Time</label>
+                <input type="text" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Servings</label>
+                <input type="text" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Recipe Ingredients</label>
+                <textarea type="text" class="form-control" id="exampleInputPassword1"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Recipe Steps</label>
+                <textarea type="text" class="form-control" id="exampleInputPassword1"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Nutrition values</label><br>
+                Calories:<input type="text" class="form-control" id="exampleInputPassword1"><br>
+                Protein:<input type="text" class="form-control" id="exampleInputPassword1"><br>
+                Fat:<input type="text" class="form-control" id="exampleInputPassword1"><br>
+                Carbs:<input type="text" class="form-control" id="exampleInputPassword1"><br>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Upload Pic</label>
+                <input type="file">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </section>
+          <section>
+            <img class="cookpic" src="../assets/recipes/uploadpic.jpg" alt="">
           </section>
         </main>
           <footer class="page-footer">

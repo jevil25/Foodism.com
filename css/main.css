@@ -488,11 +488,20 @@ Navbar
   margin-bottom: 10px;
 }
 
+.recipe:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  padding: 5px 10px;
+  cursor:pointer;
+}
+
 .recipe-img{
   height: 14rem;
   width: 16rem;
   border-radius: var(--borderRadius);
   margin-bottom: 1rem;
+  position: relative;
+  left: 14px;
+  top:5px
 }
 
 .recipe h5{
@@ -551,4 +560,16 @@ Navbar
     font-size: 0.75rem;
     margin-bottom: 15px;
   }
+}
+
+.cookpic{
+  height: 350px;
+  position: absolute;
+  left: 580px;
+  bottom: 100px;
+}
+
+.cookpic{
+  position: fixed;
+  border-radius: 30px;
 }

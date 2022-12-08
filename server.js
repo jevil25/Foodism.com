@@ -224,6 +224,11 @@ app.post("/recipes",async function(req,res){
           'foreignField': 'continent_id', 
           'as': 'Recipe'
         }
+      },
+      {
+        '$match': {
+          'continent_name': req.body.continent
+        }
       }, {
         '$addFields': {
           'recipes': {
