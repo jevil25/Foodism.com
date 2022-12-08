@@ -6,6 +6,7 @@ const multer = require('multer');//package to upload and fetch images
 const fs=require("fs");//package to read files given by the user
 const hbs=require("express-handlebars");//used for hbs file soo as to use js componenets for displaying images
 
+
 mongoose.connect("mongodb+srv://jevil2002:aaron2002@jevil257.lipykl5.mongodb.net/Foodism",{
     useNewUrlParser:true,
     useUnifiedTopology:true,
@@ -211,6 +212,52 @@ app.post("/contact",function(req,res){
   res.sendFile(path+"/contact.html");
   // global_id=null;
 });
+
+app.post("/add",function (req,res){
+  res.sendFile(path+"/tags.html")
+})
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './assets/recipes')
+  },
+  filename: function (req, file, cb) {
+      var ext=file.originalname.substring(file.originalname.lastIndexOf('.'));
+    cb(null, file.fieldname+'-'+Date.now()+ext);
+  }
+})
+var upload = multer({ storage: storage })
+app.use('/uploads',express.static('./assets/recipes'));
+
+app.post("/uploaddata",upload.single("image"), async function(req,res){
+  let files= req.file
+  console.log(files)
+  console.log(req.body.recipename)
+  console.log(req.body.recipe_desc)
+  console.log(req.body.continent)
+  console.log(req.body.cooktime)
+  console.log(req.body.preptime)
+  console.log(req.body.servings)
+  console.log(req.body.recipe_in)
+  console.log(req.body.recipe_steps)
+  console.log(req.body.calories)
+  console.log(req.body.protein)
+  console.log(req.body.carbs)
+  console.log(req.body.fat)
+  const ingredientsArr=req.body.recipe_in.split(',');
+  const stepsArray=req.body.recipe_steps.split(',');
+  const nutriton= await Nutrition.aggregate([
+    {
+      '$group': {
+        '_id': 'nutrition_id', 
+        'nutrition_id': {
+          '$max': '$nutrition_id'
+        }
+      }
+    }
+  ]);
+  console.log(nutriton[0].nutrition_id);
+})
 
 
 app.post("/recipes",async function(req,res){
