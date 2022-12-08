@@ -17,6 +17,7 @@
     <!-- main css -->
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/about.css" />
+    <link rel="stylesheet" href="../css/recipes.css">
   </head>
   <body>
     <nav class="navbar">
@@ -55,26 +56,18 @@
         <section class="featured-recipes">
           <h5 class="featured-title">Look At This Awesomesouce!</h5>
           <div class="recipes-list">
-            <a href="single-recipe.html" class="recipe">
-              <img src="../assets/recipes/recipe-1.jpeg" alt="food" class="img recipe-img">
-              <h5>carne asada</h5>
-              <p>Prep : 15min | Cook : 5min</p>
-            </a>
-            <a href="single-recipe.html" class="recipe">
-              <img src="../assets/recipes/recipe-2.jpeg" alt="food" class="img recipe-img">
-              <h5>Greek Ribs</h5>
-              <p>Prep : 15min | Cook : 5min</p>
-            </a>
-            <a href="single-recipe.html" class="recipe">
-              <img src="../assets/recipes/recipe-3.jpeg" alt="food" class="img recipe-img">
-              <h5>Vegetable Soup</h5>
-              <p>Prep : 15min | Cook : 5min</p>
-            </a>
-            <a href="single-recipe.html" class="recipe">
-              <img src="../assets/recipes/recipe-4.jpeg" alt="food" class="img recipe-img">
-              <h5>Banana pancakes</h5>
-              <p>Prep : 15min | Cook : 5min</p>
-            </a>
+            {{#each recipe}}
+                {{#if recipe_name}}
+                  <form action="/singlerecipe" method="post">
+                    <button class="recipe">
+                      <input type="hide" value="{{recipe_name}}" class="hid" name="r_name" style="display: none; visibility:hidden";>
+                      <img src="{{recipe_pic}}" alt="food" class="img recipe-img">
+                      <h5>{{recipe_name}}</h5>
+                      <p>Prep : {{preptime}}mins | Cook : {{cooktime}}mins</p>
+                    </button>
+                  </form>
+                {{/if}}
+              {{/each}}
           </div>
         </section>
       </main>

@@ -204,13 +204,67 @@ app.post("/home",function(req,res){
     // global_id=null;
 });
 
-app.post("/about",function(req,res){
-  res.sendFile(path+"/about.html");
+app.post("/about",async function(req,res){
+  let recipes= await Recipe.aggregate([
+    {
+      '$lookup': {
+        'from': 'continents', 
+        'localField': 'continent_id', 
+        'foreignField': 'continent_id', 
+        'as': 'continent'
+      }
+    }, {
+      '$addFields': {
+        'continent': {
+          '$arrayElemAt': [
+            '$continent', 0
+          ]
+        }
+      }
+    }, {
+      '$addFields': {
+        'continent_name': '$continent.continent_name'
+      }
+    }, {
+      '$match': {
+        'continent_name': 'southAsia'
+      }
+    }
+  ]);
+  app.set('view engine','hbs');
+  res.render(path+"/about.hbs",{recipe:recipes});
   // global_id=null;
 });
 
-app.post("/contact",function(req,res){
-  res.sendFile(path+"/contact.html");
+app.post("/contact", async function(req,res){
+  let recipes= await Recipe.aggregate([
+    {
+      '$lookup': {
+        'from': 'continents', 
+        'localField': 'continent_id', 
+        'foreignField': 'continent_id', 
+        'as': 'continent'
+      }
+    }, {
+      '$addFields': {
+        'continent': {
+          '$arrayElemAt': [
+            '$continent', 0
+          ]
+        }
+      }
+    }, {
+      '$addFields': {
+        'continent_name': '$continent.continent_name'
+      }
+    }, {
+      '$match': {
+        'continent_name': 'northAmerica'
+      }
+    }
+  ]);
+  app.set('view engine','hbs');
+  res.render(path+"/contact.hbs",{recipe:recipes});
   // global_id=null;
 });
 
