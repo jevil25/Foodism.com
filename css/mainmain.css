@@ -481,14 +481,15 @@ Navbar
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.tags-list a{
+.tags-list button{
   text-transform: capitalize;
   display: block;
   color: var(--grey-500);
   transition: var(--transition);
+  font-size: medium;
 }
 
-.tags-list a:hover{
+.tags-list button:hover{
   color: #ED1C24;
 }
 

@@ -538,3 +538,34 @@ async function singlerecipe(name){
     ] )
     return recipes;
 }
+
+app.post("/randomrecipes",async function(req,res){
+  let random= await Recipe.aggregate([
+    {
+      '$lookup': {
+        'from': 'continents', 
+        'localField': 'continent_id', 
+        'foreignField': 'continent_id', 
+        'as': 'continent'
+      }
+    }, {
+      '$addFields': {
+        'continent': {
+          '$arrayElemAt': [
+            '$continent', 0
+          ]
+        }
+      }
+    }, {
+      '$addFields': {
+        'continent_name': '$continent.continent_name'
+      }
+    },{
+      '$sample': {
+        'size': 6
+      }
+    }
+  ])
+  app.set('view engine','hbs');
+  res.render(path+"/recipes.hbs",{recipe:random})
+})

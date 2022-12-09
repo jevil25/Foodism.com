@@ -71,6 +71,7 @@
             </div>
             <input type="hidden" name="_next" value="http://localhost:3000/">
             <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
             <button type="submit" class="btn btn-block">submit</button>
           </form>
         </article>
@@ -81,7 +82,7 @@
           {{#each recipe}}
                 {{#if recipe_name}}
                   <form action="/singlerecipe" method="post">
-                    <button class="recipe" style="border: none;">
+                    <button class="recipe" style="border: none; background:#F8FAFC; ">
                       <input type="hide" value="{{recipe_name}}" class="hid" name="r_name" style="display: none; visibility:hidden";>
                       <img src="{{recipe_pic}}" alt="food" class="img recipe-img">
                       <h5>{{recipe_name}}</h5>
