@@ -58,7 +58,7 @@
               {{#each recipe}}
                 {{#if recipe_name}}
                   <form action="/singlerecipe" method="post">
-                    <button class="recipe">
+                    <button class="recipe" style="background-color: #F8FAFC;">
                       <input type="text" value="{{recipe_name}}" class="hid" name="r_name">
                       <img src="{{recipe_pic}}" alt="food" class="img recipe-img">
                       <h5>{{recipe_name}}</h5>

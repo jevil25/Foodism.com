@@ -301,8 +301,26 @@ app.post("/uploaddata",upload.single("image"), async function(req,res){
   // console.log(req.body.carbs)
   // console.log(req.body.fat)
   // console.log('.'+files.destination+'/'+files.filename)
-  const ingredientsArr=req.body.recipe_in.split(',,');
-  const stepsArray=req.body.recipe_steps.split(',,');
+  const ingredientsarr=req.body.recipe_in.split('\r\n');
+  const stepsarray=req.body.recipe_steps.split('\r\n');
+  const ingredientsArr = ingredientsarr.filter(element => {
+    if (element !== ''){
+      // console.log(element)
+      return element;
+    }
+  });
+
+  // console.log(ingredientsArr);
+
+  const stepsArray=stepsarray.filter(element => {
+    if(element !== ''){
+      // console.log(element)
+      return element;
+    }
+  });
+
+  // console.log(stepsArray)
+
   const filename='.'+files.destination+'/'+files.filename;
   const nutriton= await Nutrition.aggregate([
     {
@@ -333,9 +351,9 @@ app.post("/uploaddata",upload.single("image"), async function(req,res){
         }
     }
 ])
-  console.log(Continent[0].continent_id+1)
-  console.log(nutriton[0].nutrition_id+1);
-  console.log(recipeid[0].recipe_id+1)
+  // console.log(Continent[0].continent_id+1)
+  // console.log(nutriton[0].nutrition_id+1);
+  // console.log(recipeid[0].recipe_id+1)
   const load=new Recipe({
     "continent_id": Continent[0].continent_id,
     "cooktime": req.body.cooktime,
@@ -350,7 +368,7 @@ app.post("/uploaddata",upload.single("image"), async function(req,res){
     "servings": req.body.servings,
     "tag_id": [1,2,3,4]
 })
-console.log(load)
+// console.log(load)
 load.save();
 
 const nutrition=await Nutrition({
@@ -360,15 +378,22 @@ const nutrition=await Nutrition({
   protein:req.body.protein,
   carbs:req.body.carbs,
 })
-console.log(nutrition)
+// console.log(nutrition)
 
 nutrition.save();
+
+let recipes = await singlerecipe(req.body.recipename);
+// console.log(recipes);
+
+app.set('view engine','hbs');
+res.render(path+'/single-recipe.hbs',{recipe:recipes});
+
 })
 
 
 app.post("/recipes",async function(req,res){
     app.set('view engine','hbs');
-    console.log(req.body.continent);
+    // console.log(req.body.continent);
     let recipes= await Recipe.aggregate([
       {
         '$lookup': {
@@ -395,7 +420,7 @@ app.post("/recipes",async function(req,res){
         }
       }
     ]);
-    console.log(recipes)
+    // console.log(recipes)
     res.render("recipes.hbs",{recipe:recipes})
 })
 
@@ -423,88 +448,93 @@ app.post('/recipesall',async function (req,res){
       }
     }
   ])
-  console.log(recipesall)
+  // console.log(recipesall)
   res.render(path+"/recipes.hbs",{recipe:recipesall})
 })
 
 app.post("/singlerecipe",async function(req,res){
     app.set('view engine', 'hbs') //view engine for handlebars page
-    console.log(req.body.r_name)
-    let recipes=await Recipe.aggregate( [
-      {
-        '$match': {
-          'recipe_name': req.body.r_name
-        }
-      },
-        {
-          '$lookup': {
-            'from': 'nutritions', 
-            'localField': 'nutrition_id', 
-            'foreignField': 'nutrition_id', 
-            'as': 'nutriton_details'
-          }
-        }, {
-          '$addFields': {
-            'calories': {
-              '$arrayElemAt': [
-                '$nutriton_details.calories', 0
-              ]
-            }, 
-            'fat': {
-              '$arrayElemAt': [
-                '$nutriton_details.fat', 0
-              ]
-            }, 
-            'carbs': {
-              '$arrayElemAt': [
-                '$nutriton_details.carbs', 0
-              ]
-            }, 
-            'protein': {
-              '$arrayElemAt': [
-                '$nutriton_details.protein', 0
-              ]
-            }
-          }
-        }, {
-          '$unset': [
-            'nutrition_id', '_id', 'recipe_id', 'nutriton_details', '__v'
-          ]
-        }, {
-          '$lookup': {
-            'from': 'tags', 
-            'localField': 'tag_id', 
-            'foreignField': 'tag_id', 
-            'as': 'tagResult'
-          }
-        }, {
-          '$addFields': {
-            'tags': [
-              {
-                '$arrayElemAt': [
-                  '$tagResult.tag_name', 0
-                ]
-              }, {
-                '$arrayElemAt': [
-                  '$tagResult.tag_name', 1
-                ]
-              }, {
-                '$arrayElemAt': [
-                  '$tagResult.tag_name', 2
-                ]
-              }, {
-                '$arrayElemAt': [
-                  '$tagResult.tag_name', 3
-                ]
-              }
-            ]
-          }
-        }, {
-          '$unset': [
-            'tag_id', 'tagResult','continent_id'
-          ]
-        }
-      ] )
-      console.log(recipes)
+    // console.log(req.body.r_name)
+    let recipes = await singlerecipe(req.body.r_name);
+      // console.log(recipes)
     res.render(path+"/single-recipe.hbs",{recipe:recipes},);
 })
+
+async function singlerecipe(name){
+  let recipes=await Recipe.aggregate( [
+    {
+      '$match': {
+        'recipe_name': name
+      }
+    },
+      {
+        '$lookup': {
+          'from': 'nutritions', 
+          'localField': 'nutrition_id', 
+          'foreignField': 'nutrition_id', 
+          'as': 'nutriton_details'
+        }
+      }, {
+        '$addFields': {
+          'calories': {
+            '$arrayElemAt': [
+              '$nutriton_details.calories', 0
+            ]
+          }, 
+          'fat': {
+            '$arrayElemAt': [
+              '$nutriton_details.fat', 0
+            ]
+          }, 
+          'carbs': {
+            '$arrayElemAt': [
+              '$nutriton_details.carbs', 0
+            ]
+          }, 
+          'protein': {
+            '$arrayElemAt': [
+              '$nutriton_details.protein', 0
+            ]
+          }
+        }
+      }, {
+        '$unset': [
+          'nutrition_id', '_id', 'recipe_id', 'nutriton_details', '__v'
+        ]
+      }, {
+        '$lookup': {
+          'from': 'tags', 
+          'localField': 'tag_id', 
+          'foreignField': 'tag_id', 
+          'as': 'tagResult'
+        }
+      }, {
+        '$addFields': {
+          'tags': [
+            {
+              '$arrayElemAt': [
+                '$tagResult.tag_name', 0
+              ]
+            }, {
+              '$arrayElemAt': [
+                '$tagResult.tag_name', 1
+              ]
+            }, {
+              '$arrayElemAt': [
+                '$tagResult.tag_name', 2
+              ]
+            }, {
+              '$arrayElemAt': [
+                '$tagResult.tag_name', 3
+              ]
+            }
+          ]
+        }
+      }, {
+        '$unset': [
+          'tag_id', 'tagResult','continent_id'
+        ]
+      }
+    ] )
+    return recipes;
+}

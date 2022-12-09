@@ -1,7 +1,9 @@
 # Recipe webpage
 
 This is a project that i have made for my Web deveplopment project.
-I have tried to clone a webpage from free code camp plus many new features.
+In this web page you can view exsiting recipes and add your own recipes as well.
+
+Technologies used : # Html,css,javascript,handlebars,nodejs,expressjs,mongodb.....
 
 To run the file clone it using 
 git clone https://github.com/jevil25/Recipe-webpage.git
