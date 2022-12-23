@@ -519,9 +519,6 @@ Navbar
 }
 
 @media screen and (min-width:576px) {
-  .recipes-list{
-    grid-template-columns: 1fr 1fr;
-  }
 
   .recipe-img{
     height: 10rem;
