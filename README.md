@@ -14,3 +14,18 @@ Download all the npm dependencies
 
 run it in the terminal using 
 # node server.js
+
+
+#some screenshots of the webpage
+
+![alt text](https://raw.githubusercontent.com/jevil25/Recipe-webpage/main/demoImages/Screenshot%20(19).png)
+
+![alt text](https://raw.githubusercontent.com/jevil25/Recipe-webpage/main/demoImages/Screenshot%20(20).png)
+
+![alt text](https://raw.githubusercontent.com/jevil25/Recipe-webpage/main/demoImages/Screenshot%20(21).png)
+
+![alt text](https://raw.githubusercontent.com/jevil25/Recipe-webpage/main/demoImages/Screenshot%20(22).png)
+
+![alt text](https://raw.githubusercontent.com/jevil25/Recipe-webpage/main/demoImages/Screenshot%20(23).png)
+
+![alt text](https://raw.githubusercontent.com/jevil25/Recipe-webpage/main/demoImages/Screenshot%20(24).png)
