@@ -191,9 +191,15 @@ app.use(express.json());
 app.set('view engine','hbs');
 
 
-app.listen(3000,function(){
-    console.log("server is live on 3000")
+
+var server_port = process.env.YOUR_PORT || process.env.PORT || 3000;
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
+app.listen(server_port, server_host, function() {
+    console.log('Listening on port %d', server_port);
 });
+// app.listen(3000,function(){
+//     console.log("server is live on 3000")
+// });
 
 app.get('/',function(req,res){ //used to identify user sessions
     res.sendFile(path+"/index.html");
