@@ -16,3 +16,20 @@
         align-items: center;
     }
 }
+
+.contact-info a{
+    text-decoration: none;
+}
+
+i{
+    color: black;
+    font-size: 40px;
+    margin-right: 10px;
+}
+
+i:hover{
+    color: red;
+    background-color: transparent;
+    border-radius: 20px;
+}
+

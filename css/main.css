@@ -299,6 +299,7 @@ Navbar
 .nav-btn{
   padding: 0.15rem 0.75rem;
   display: block;
+  border: transparent;
 }
 
 .nav-btn i{

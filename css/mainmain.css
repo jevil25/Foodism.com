@@ -653,3 +653,9 @@ Navbar
   position: fixed;
   border-radius: 30px;
 }
+
+@media screen and (max-width:415px) {
+  .recipe-text h4,#map{
+    width: 350px;
+  }
+}
