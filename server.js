@@ -454,7 +454,7 @@ app.post('/recipesall',async function (req,res){
       }
     }
   ])
-  console.log(recipesall)
+  // console.log(recipesall)
   res.render(path+"/recipes.hbs",{recipe:recipesall})
 })
 
