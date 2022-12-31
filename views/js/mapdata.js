@@ -77,56 +77,56 @@ var simplemaps_continentmap_mapdata={
       description: "default",
       color: "#CC33FF",
       hover_color: "#751d92",
-      url: "../views/SArecipes.html"
+      url: "/SArecipes.html"
     },
     NA: {
       name: "North America",
       description: "default",
       color: "#3366FF",
       hover_color: "#1c388c",
-      url: "../views/NArecipes.html"
+      url: "/NArecipes.html"
     },
     EU: {
       name: "Europe",
       description: "default",
       color: "#FF3366",
       hover_color: "#c0264d",
-      url: "../views/EUrecipes.html"
+      url: "/EUrecipes.html"
     },
     AF: {
       name: "Africa",
       description: "default",
       color: "#33FF66",
       hover_color: "#1a8535",
-      url: "../views/AFrecipes.html"
+      url: "/AFrecipes.html"
     },
     NS: {
       name: "North Asia",
       description: "default",
       color: "#33FFCC",
       hover_color: "#23b28e",
-      url: "../views/NSrecipes.html"
+      url: "/NSrecipes.html"
     },
     SS: {
       name: "South Asia",
       description: "default",
       color: "#FF6633",
       hover_color: "#ac4422",
-      url: "../views/SSrecipes.html"
+      url: "/SSrecipes.html"
     },
     ME: {
       name: "Middle East",
       description: "default",
       color: "#FFCC33",
       hover_color: "#bb9525",
-      url: "../views/MErecipes.html"
+      url: "/MErecipes.html"
     },
     OC: {
       name: "Oceania",
       description: "default",
       color: "#FF33CC",
       hover_color: "#b1238d",
-      url: "../views/OCrecipes.html"
+      url: "/OCrecipes.html"
     }
   },
   labels: {}

@@ -183,7 +183,7 @@ const nut=new Nutrition({
 
 
 const app=express();
-app.use(express.static(__dirname));
+app.use(express.static(__dirname+"/views"));
 const path=__dirname+"/views";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
