@@ -1,10 +1,10 @@
 var simplemaps_continentmap_mapdata={
   main_settings: {
     //General settings
-		width: "700", //or 'responsive'
+		width: "responsive", //or 'responsive'
     background_color: "#FFFFFF",
     background_transparent: "yes",
-    popups: "detect",
+    popups: "no",
     
 		//State defaults
 		state_description: "State description",
@@ -65,7 +65,7 @@ var simplemaps_continentmap_mapdata={
 		div: "map",
     auto_load: "yes",
     rotate: "0",
-    url_new_tab: "yes",
+    url_new_tab: "no",
     images_directory: "default",
     import_labels: "no",
     fade_time: 0.1,

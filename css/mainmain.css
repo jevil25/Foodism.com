@@ -481,8 +481,24 @@ Navbar
   grid:2rem 1rem;
   padding-bottom: 3rem;
   grid-template-columns: auto;
-  width: max-content;
 }
+
+.recipe-text{
+  max-width: 46%;
+}
+
+@media only screen and (max-width: 600px) {
+  #map {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  #map {
+    width: 600px;
+  }
+}
+
 
 .tags-container h4{
   margin-bottom: 0.5rem;
@@ -537,7 +553,13 @@ Navbar
     height: 10rem;
     margin-right: 30px;
   }
+
+  .recipe-text{
+    max-width: 60%;
+  }
 }
+
+
 
 @media screen and (min-width:992px) {
   .recipes-container{
@@ -555,6 +577,14 @@ Navbar
   .tags-list{
     grid-template-columns: 1fr;
   }
+
+  .recipe-text{
+    max-width: 70%;
+  }
+
+  #map {
+    width: 700px;
+  }
 }
 
 @media screen and (min-width:1200px) {
@@ -569,6 +599,36 @@ Navbar
   .recipe p{
     font-size: 0.75rem;
     margin-bottom: 15px;
+  }
+
+  .recipe-text{
+    max-width: 100%;
+  }
+
+  #map {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width:500px) {
+  #map{
+    width: 350px;
+  }
+
+  .recipe-text h4{
+    font-size: small;
+    width: 350px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  #map{
+    width: 400px;
+  }
+
+  .recipe-text h4{
+    font-size: small;
+    width: 400px;
   }
 }
 
