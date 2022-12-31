@@ -272,12 +272,12 @@ Navbar
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20px;
+  /* height: 20px; */
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
   background-color: black;
-  position: fixed;
+  /* position: fixed; */
   z-index: 1;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .nav-center{
@@ -294,7 +294,7 @@ Navbar
 
 .nav-header img{
   width: 75px;
-  position: relative;
+  /* position: relative; */
   right: 20px;
 }
 
@@ -302,12 +302,11 @@ Navbar
   font-weight:500;
   color: white;
   font-size:xx-large;
-  position: relative;
-  right: 20px;
 }
 
 .nav-btn{
   padding: 0.15rem 0.75rem;
+  display: block;
 }
 
 .nav-btn i{
@@ -315,14 +314,21 @@ Navbar
 }
 
 .nav-links{
+  height: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: var(--transition);
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
 }
 
 .show-links{
-  height: 0;
+   height: 0;
   overflow: hidden;
-  transition: var(--transition);
+  transition: var(--transition); 
+  height: 23.9375rem;
 }
 
 .nav-link{
@@ -340,6 +346,7 @@ Navbar
   display: flex;
   align-items: center;
   height: 5px;
+  border: transparent;
 }
 
 
@@ -371,10 +378,16 @@ Navbar
   }
 
   .nav-links{
-    height: auto;
+    height: auto !important;
     flex-direction: row;
     align-items: center;
     width: 100%;
+  }
+
+  .nav-links.closed {
+    height: 0;
+    overflow: hidden;
+    transition: var(--transition);
   }
 
   .nav-link{
@@ -567,4 +580,16 @@ Navbar
 .adjust{
   position: relative;
   bottom:1px;
+}
+
+.cookpic{
+  height: 350px;
+  position: absolute;
+  left: 580px;
+  bottom: 100px;
+}
+
+.cookpic{
+  position: fixed;
+  border-radius: 30px;
 }

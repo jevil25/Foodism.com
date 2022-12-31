@@ -6,7 +6,7 @@
 }
 
 .tag{
-    background: var(--grey-500);
+    /* background: var(--grey-500); */
     border-radius: var(--borderRadius);
     text-align: center;
     color: var(--white);
@@ -35,14 +35,5 @@
     .tags-wrapper{
         grid-template-columns: repeat(3,1fr);
     }   
-}
+} 
 
-.main{
-    position: relative;
-    top:30px;
-}
-
-.navbar{
-    padding-bottom: 75px;
-  }
-  
