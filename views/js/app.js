@@ -11,3 +11,7 @@ function toggleMenu() {
     navLinks.classList.toggle('closed');
     navLinks.classList.toggle('show-links');
   }
+
+  const currentYear = new Date().getFullYear();
+const dateDiv = document.getElementById('date');
+dateDiv.innerText = dateDiv.innerText.replace(/\d{4}/, currentYear);
