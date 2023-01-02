@@ -576,4 +576,15 @@ Navbar
     font-size: 0.75rem;
     margin-bottom: 15px;
   }
+
+  .nav-link{
+    border: transparent;
+  }
+}
+
+@media screen and (max-width:576px) {
+  .nav-link{
+    border: transparent;
+    border-top: 1px solid var(--grey-500);
+  }
 }
