@@ -592,6 +592,10 @@ Navbar
     grid-template-columns: min-content;
   }
 
+  .nav-link{
+    border: transparent;
+  }
+
   .recipe h5{
     font-size: 1.15rem;
   }
@@ -658,4 +662,12 @@ Navbar
   .recipe-text h4,#map{
     width: 350px;
   }
+}
+
+@media screen and (max-width:576px) {
+  .nav-link{
+    border: transparent;
+    border-top: 1px solid var(--grey-500);
+  }
+  
 }
