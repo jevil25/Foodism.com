@@ -11,6 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit"
   },
   "dependencies": {
+    "@vercel/analytics": "^0.1.6",
     "body-parser": "^1.20.1",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
